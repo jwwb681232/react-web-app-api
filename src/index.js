@@ -3,6 +3,7 @@ import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import auth from './routes/auth';
+import users from './routes/users';
 import dotenv from 'dotenv';
 import Promise from 'bluebird';
 
@@ -13,6 +14,7 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URL, {useMongoClient: true});
 
 app.use('/api/auth', auth);
+app.use('/api/users', users);
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
